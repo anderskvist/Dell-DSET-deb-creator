@@ -82,7 +82,7 @@ EOF
 find dell-dset-for-debian/ -name \*.sh|xargs -n 1 sed -i 's/\/bin\/sh/\/bin\/bash/'
 
 # Remove path for awk, sort, basename and rpm as they are placed in /usr/bin/ on debian based systems.
-find dell-dset-for-debian/ -name \*.sh|xargs -n 1 sed -ir 's/\/bin\/(awk|sort|basename|rpm)/\1/g'
+find dell-dset-for-debian/ -name \*.sh|xargs -n 1 sed -i -r 's/\/bin\/(awk|sort|basename|rpm)/\1/g'
 
 # Create GOD package - MUHAHAHAHA ;)
 dpkg-deb --build dell-dset-for-debian/ ..
