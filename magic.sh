@@ -86,7 +86,7 @@ EOF
 cat <<EOF > dell-dset-for-debian/DEBIAN/control
 Package: dell-dset-for-debian
 Version: 3.7.0.219-2
-Depends: rpm, sfcb
+Depends: rpm
 Architecture: amd64
 Maintainer: https://github.com/anderskvist/Dell-DSET-deb-creator <anderskvist@gmail.com>
 Section: alien
