@@ -37,6 +37,27 @@ cat <<EOF > dell-dset-for-debian/DEBIAN/postinst
 ln -sf /opt/dell/advdiags/dset/bin/collector.sh /usr/sbin/dellsysteminfo
 ln -sf /opt/dell/advdiags/dset/uninstall.sh /usr/sbin/dsetuninstall
 ldconfig
+
+# OUR OWN TO SUPPORT UBUNTU! We will not remove them again as we don't know if anything else have created them :/
+if [ ! -e /bin/awk ]; then
+  ln -s /usr/bin/awk /bin/
+fi
+
+if [ ! -e /bin/basename ]; then
+  ln -s /usr/bin/basename /bin/
+fi
+
+if [ ! -e /bin/sort ]; then
+  ln -s /usr/bin/sort /bin/
+fi
+
+if [ ! -e /bin/rpm ]; then
+  ln -s /usr/bin/rpm /bin/
+fi
+
+if [ ! -e /etc/omreg.cfg ]; then
+  ln -s /opt/dell/advdiags/dset/bin/omsa/etc/omreg.cfg /etc/
+fi
 EOF
 
 chmod +x dell-dset-for-debian/DEBIAN/postinst
@@ -60,6 +81,7 @@ EOF
 cat <<EOF > dell-dset-for-debian/DEBIAN/control
 Package: dell-dset-for-debian
 Version: 3.7.0.219-2
+Depends: rpm, sfcb
 Architecture: amd64
 Maintainer: https://github.com/anderskvist/Dell-DSET-deb-creator <anderskvist@gmail.com>
 Section: alien
