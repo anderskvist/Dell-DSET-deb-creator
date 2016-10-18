@@ -95,6 +95,9 @@ Description: Dset common files
  Dell DSET package for debian based systems
 EOF
 
+# Force usage of bash as Ubuntu uses dash for /bin/sh
+find dell-dset-for-debian/ -name \*.sh|xargs -n 1 sed -i 's/\/bin\/sh/\/bin\/bash/'
+
 # Create GOD package - MUHAHAHAHA ;)
 dpkg-deb --build dell-dset-for-debian/ ..
 
