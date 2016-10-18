@@ -2,6 +2,11 @@
 
 # Written and maintained by Anders Kvist <anderskvist@gmail.com>
 
+# Requirements for this script to work
+for R in fakeroot alien dpkg-deb; do
+    command -v ${R} >/dev/null 2>&1 || { echo >&2 "Command '${R}' is required."; exit 1; }
+done
+
 # Hardcoded URL for the first tests
 URL='http://downloads.dell.com/FOLDER02413874M/1/dell-dset-lx64-3.7.0.219.bin'
 
