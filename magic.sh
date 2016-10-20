@@ -84,6 +84,11 @@ find dell-dset-for-debian/ -name \*.sh|xargs -n 1 sed -i 's/\/bin\/sh/\/bin\/bas
 # Remove path for awk, sort, basename and rpm as they are placed in /usr/bin/ on debian based systems.
 find dell-dset-for-debian/ -name \*.sh|xargs -n 1 sed -i -r 's/\/bin\/(awk|sort|basename|rpm)/\1/g'
 
+# Force usage of bash in script executed from Dell binary (collector)
+echo -e '# Hack to force execution via bash - added by dell-dset-for-ubuntu script\nif [ -z "${BASH}" ]; then /bin/bash ${0}; exit; fi\n' > dell-dset-for-debian/opt/dell/advdiags/dset/bin/dell-sysreport.sh_temp
+cat dell-dset-for-debian/opt/dell/advdiags/dset/bin/dell-sysreport.sh >> dell-dset-for-debian/opt/dell/advdiags/dset/bin/dell-sysreport.sh_temp
+mv dell-dset-for-debian/opt/dell/advdiags/dset/bin/dell-sysreport.sh_temp dell-dset-for-debian/opt/dell/advdiags/dset/bin/dell-sysreport.sh
+
 # Create GOD package - MUHAHAHAHA ;)
 dpkg-deb --build dell-dset-for-debian/ ..
 
